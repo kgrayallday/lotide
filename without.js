@@ -22,19 +22,17 @@ const assertArraysEqual = function (arrOne, arrTwo) {
 
 
 const without = function (source, itemsToRemove) {
-  let newArr = source;
+  let newArr = [];
 
   for (let i = 0; i < itemsToRemove.length; i++) { // loop through items to remove
 
     for (let j = 0; j < source.length; j++) { // loop through the source array
-      if (itemsToRemove[i] === source[j]) { // remove element fround array if matched with itemsToRemove
-        newArr.splice(j, 1);
+      if (itemsToRemove[i] !== source[j]) { // remove element fround array if matched with itemsToRemove
+        newArr.push(source[j]);
       }
 
     }
   }
-  //console.log("New Array:", newArr);
-  console.log("Old Array:", source);
   return newArr;
 }
 
