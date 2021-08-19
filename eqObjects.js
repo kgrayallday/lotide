@@ -1,3 +1,5 @@
+const { clear } = require("console");
+
 const assertEqual = function (actual, expected) {
   if (actual === expected) {
     console.log(`✅ Assertion Passed ${actual} ===  ${expected}`);
@@ -34,14 +36,18 @@ const eqObjects = function (object1, object2) {
 
   // if same number of keys, do the keys all match?
   for (const key of onlyKeys1) {
-    if (Array.isArray(object1[key]) && Array.isArray(object2)) {
-      if (eqArray(object1[key], object2[key])) {
-        return true
+    console.log(key);
+    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+      if (!eqArrays(object1[key], object2[key])) {
+        return false;
+      }
+    } else {
+      if (object1[key] !== object2[key]) { // checks if keys match not if order of keys match
+        return false;
       }
     }
-    if (object1[key] !== object2[key]) { // checks if keys match not if order of keys match
-      return false;
-    }
+
+
     // console.log("object1 key:", object1[key]);
     // console.log("object2 key:", object2[key]);
   }
